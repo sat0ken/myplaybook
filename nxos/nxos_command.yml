@@ -1,0 +1,13 @@
+---
+
+- hosts: nxos1
+  gather_facts: no
+
+  tasks:
+    - nxos_command:
+        commands: show interface brief
+      register: facts
+
+    - debug:
+        var: facts.stdout_lines
+
