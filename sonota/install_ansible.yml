@@ -1,0 +1,28 @@
+---
+
+- hosts: CentOS
+  connection: ssh
+  gather_facts: False
+
+  tasks:
+  - name: install python-devel 
+    yum:
+      name: python-devel
+      state: present
+  
+  - name: install openssl-devel
+    yum:
+      name: openssl-devel
+      state: present
+
+  - name: install libffi-devel
+    yum:
+      name: libffi-devel
+      state: present
+
+  - name: install ansible
+    command: pip install ansible==2.6.0
+    register: stdout
+
+  - debug:
+      var: stdout
