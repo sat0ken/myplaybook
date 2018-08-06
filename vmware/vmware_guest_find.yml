@@ -1,0 +1,18 @@
+---
+- hosts: ESXi
+  connection: local
+
+  tasks:
+    - name: Find Guest's Folder using name
+      vmware_guest_find:
+        datacenter: ha-datacenter
+        hostname: "{{ vcenter_ip }}"
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        validate_certs: no
+        name: "{{ vm_name }}"
+      delegate_to: localhost
+      register: vm_folder
+
+    - debug:
+        var: vm_folder

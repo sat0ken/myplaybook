@@ -1,0 +1,18 @@
+---
+- hosts: ESXi
+  connection: local
+
+  tasks:
+    - name: Delete Snapshot
+      vmware_guest_snapshot:
+        hostname: "{{ vcenter_ip }}"
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        validate_certs: no
+        datacenter: "{{ dc_name }}"
+        folder: "{{ folder }}"
+        name: "{{ vm_name }}"
+        state: absent
+        snapshot_name: snap_test1
+      delegate_to: localhost
+

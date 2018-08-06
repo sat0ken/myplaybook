@@ -1,0 +1,19 @@
+---
+
+- hosts: ESXi
+  connection: local
+
+  tasks:
+    - name: Get acceptance level from the given ESXi Host
+      vmware_host_acceptance:
+        hostname: "{{ vcenter_ip }}"
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        esxi_hostname: "{{ esxi_ip }}"
+        validate_certs: no
+        state: list
+      register: host_acceptance_level
+
+    - debug:
+        var: host_acceptance_level
+

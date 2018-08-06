@@ -1,0 +1,16 @@
+---
+- hosts: ESXi
+  connection: local
+
+  tasks:
+    - name: Gather DRS facts about given Cluster
+      vmware_drs_rule_facts:
+        hostname: "{{ vcenter_ip }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_userpass }}"
+        validate_certs: no
+        datacenter: "{{ dc_name }}"
+      register: datacenter_drs_facts
+
+    - debug:
+        var: datacenter_drs_facts

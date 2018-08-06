@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Create directory inside a vm
+      vmware_guest_file_operation:
+        hostname: "{{ vcenter_ip }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_userpass }}"
+        validate_certs: no
+        vm_id: "{{ vm_name }}"
+        vm_username: "{{ vm_user }}"
+        vm_password: "{{ vm_pass }}"
+        directory:
+          path: "test"
+          operation: delete
+          recurse: no
+      delegate_to: localhost

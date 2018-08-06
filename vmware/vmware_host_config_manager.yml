@@ -1,0 +1,15 @@
+---
+
+- hosts: ESXi
+  connection: local
+
+  tasks:
+    - name: Manage Log level setting for an ESXi Host
+      vmware_host_config_manager:
+        hostname: "{{ vcenter_ip }}"
+        username: "{{ vcenter_user }}"
+        password: "{{ vcenter_pass }}"
+        esxi_hostname: "{{ esxi_ip }}"
+        validate_certs: no
+        options:
+          'Syslog.global.defaultRotate': 8

@@ -1,0 +1,17 @@
+---
+- hosts: ESXi
+  connection: local
+
+  tasks:
+    - name: Gather cluster facts
+      vmware_cluster_facts:
+        hostname: "{{ vcenter_ip }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_userpass }}"
+        datacenter: "{{ dc_name }}"
+        validate_certs: False
+      delegate_to: localhost
+      register: cluster_facts
+
+    - debug:
+        var: cluster_facts

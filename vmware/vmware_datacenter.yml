@@ -1,0 +1,14 @@
+---
+- hosts: ESXi
+  connection: local
+
+  tasks:
+    - name: Create Datacenter
+      local_action:
+        module: vmware_datacenter
+        hostname: "{{ vcenter_ip }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_userpass }}"
+        validate_certs: no
+        datacenter_name: "testdc"
+        state: absent
