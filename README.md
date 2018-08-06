@@ -1,2 +1,2 @@
 # myplaybooks
-自分用Playbook
+自分用AnsibleのPlaybook集
