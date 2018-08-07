@@ -1,0 +1,11 @@
+---
+
+- hosts: windows
+  connection: winrm
+  gather_facts: False
+
+  tasks:
+  - name: Copy a single file
+    win_copy:
+      src: hosts
+      dest: C:\Users\Administrator\Downloads\bar.conf

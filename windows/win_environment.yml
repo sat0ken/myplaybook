@@ -1,0 +1,14 @@
+---
+
+- hosts: windows
+  connection: winrm
+  gather_facts: False
+
+  tasks:
+    - name: Set an environment variable for all users
+      win_environment:
+        state: absent
+        name: TestVariable
+        value: Test value
+        level: machine
+ 

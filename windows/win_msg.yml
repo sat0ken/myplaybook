@@ -1,0 +1,12 @@
+---
+
+- hosts: windows
+  connection: winrm
+  gather_facts: False
+
+  tasks:
+    - name: Warn logged in users of impending upgrade
+      win_msg:
+      display_seconds: 60
+      msg: Automated upgrade about to start.
+   

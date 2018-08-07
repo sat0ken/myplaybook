@@ -1,0 +1,13 @@
+---
+
+- hosts: windows
+  connection: winrm
+  gather_facts: False
+
+  tasks:
+  - name: Obtain information about a registry key using short form
+    win_reg_stat:
+      path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
+      register: ansible_facts
+
+  - debug: var=ansible_facts

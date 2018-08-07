@@ -1,0 +1,14 @@
+---
+
+- hosts: windows
+  connection: winrm
+  gather_facts: False
+
+  tasks:
+  - name: Get acm instance version
+    win_file_version:
+      path: C:\Windows\System32\cmd.exe
+      debug:
+        var: ansible_facts
+
+  - debug: var=ansible_facts
