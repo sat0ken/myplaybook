@@ -1,0 +1,18 @@
+---
+- hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Query all filters for a tenant
+    aci_filter:
+      host: "{{ aci_ip }}"
+      username: "{{ aci_username }}"
+      password: "{{ aci_userpass }}"
+      validate_certs: no
+      tenant: mgmt
+      state: query
+    register: ansible_facts
+
+  - debug:
+      var: ansible_facts

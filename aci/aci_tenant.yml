@@ -1,0 +1,18 @@
+---
+- hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Query a tenant
+    aci_tenant:
+      host: "{{ aci_ip }}"
+      username: "{{ aci_username }}"
+      password: "{{ aci_userpass }}"
+      validate_certs: no
+      tenant: Tenant-Furukawa
+      state: query
+    register: ansible_facts
+
+  - debug:
+          var: ansible_facts

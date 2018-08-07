@@ -1,0 +1,17 @@
+---
+- hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: get all subnets
+    aci_ap:
+      host: "{{ aci_ip }}"
+      username: "{{ aci_username }}"
+      password: "{{ aci_userpass }}"
+      validate_certs: no
+      state: query
+    register: raw
+
+  - debug:
+      var: raw

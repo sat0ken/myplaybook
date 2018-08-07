@@ -1,0 +1,17 @@
+---
+- hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Query all fabric node
+    aci_fabric_node:
+      host: "{{ aci_ip }}"
+      username: "{{ aci_username }}"
+      password: "{{ aci_userpass }}"
+      validate_certs: no
+      state: query
+    register: ansible_facts
+
+  - debug:
+      var: ansible_facts

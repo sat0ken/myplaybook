@@ -1,0 +1,19 @@
+---
+- hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Query all domain to VLAN pool bindings
+    aci_domain_to_vlan_pool:
+      host: "{{ aci_ip }}"
+      username: "{{ aci_username }}"
+      password: "{{ aci_userpass }}"
+      validate_certs: no
+      domain_type: phys
+      pool_allocation_mode: static
+      state: query
+    register: ansible_facts
+
+  - debug:
+      var: ansible_facts

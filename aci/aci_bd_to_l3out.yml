@@ -1,0 +1,17 @@
+---
+- hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Get aci_bd_to_l3out
+    aci_bd_to_l3out:
+      host: "{{ aci_ip }}"
+      username: "{{ aci_username }}"
+      password: "{{ aci_userpass }}"
+      validate_certs: no
+      state: query
+    register: raw
+
+  - debug:
+          var: raw

@@ -1,0 +1,18 @@
+---
+- hosts: apic
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Query all provider contract to EPG bindings
+    aci_epg_to_contract:
+      host: "{{ aci_ip }}"
+      username: "{{ aci_username }}"
+      password: "{{ aci_userpass }}"
+      validate_certs: no
+      contract_type: consumer
+      state: query
+    register: ansible_facts
+
+  - debug:
+      var: ansible_facts
