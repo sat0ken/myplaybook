@@ -1,0 +1,12 @@
+---
+- hosts: R1
+  gather_facts: no
+
+  tasks:
+    - ios_command:
+        commands: show version
+
+      register: facts
+
+    - debug:
+        var: facts
