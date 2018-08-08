@@ -1,0 +1,14 @@
+---
+
+- hosts: windows
+  connection: winrm
+  gather_facts: False
+
+  tasks:
+  - name: Obtain information about a file
+    win_stat:
+      path: C:\Users\Administrator\Downloads\bar.conf
+    register: file_info
+ 
+  - debug: var=file_info
+    
