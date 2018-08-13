@@ -1,0 +1,36 @@
+---
+
+- hosts: ubuntu
+  connection: ssh
+  become: true
+  gather_facts: False
+
+  tasks:
+    - name: install lxde-core and xrdp
+      apt:
+        name: "{{ packages }}"
+        state: present
+        update_cache: yes
+      vars:
+        packages:
+          - lxde-core
+          - xrdp
+
+    - name: add repository gns3
+      apt_repository:
+        repo: ppa:gns3/ppa
+
+    - name: install gns3
+      apt:
+        name: gns3-gui
+        state: present
+        update_cache: yes
+
+    - name: get-pip.py
+      command: wget https://bootstrap.pypa.io/get-pip.py
+
+    - name: pip install
+      command: python3 get-pip.py
+
+    - name: pip install ansible
+      command: python3 -m pip install ansible
