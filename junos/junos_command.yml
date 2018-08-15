@@ -1,0 +1,12 @@
+---
+- hosts: vMX
+  gather_facts: no
+
+  tasks:
+    - junos_command:
+        commands: 
+          - show version
+      register: facts
+
+    - debug:
+        var: facts.stdout_lines

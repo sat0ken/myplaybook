@@ -1,0 +1,13 @@
+---
+- hosts: XRv9000
+  gather_facts: no
+
+  tasks:
+    - iosxr_command:
+        commands:
+          - show version
+          - show interfaces
+      register: facts
+
+    - debug:
+        var: facts
