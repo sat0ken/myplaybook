@@ -1,0 +1,17 @@
+---
+- hosts: bigip
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - bigip_command:
+        commands: show sys version
+        server: "{{ bigip_server }}"
+        user: "{{ bigip_user }}"
+        password: "{{ bigip_pass }}"
+        server_port: 8443
+        validate_certs: no
+      register: facts
+
+    - debug:
+        var: facts.stdout_lines

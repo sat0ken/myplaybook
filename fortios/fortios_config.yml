@@ -1,0 +1,13 @@
+---
+- hosts: Fortios
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - fortios_config:
+        host: "{{ host }}"
+        username: "admin"
+        password: "{{ password }}"
+        backup: yes
+        backup_path: /tmp/
+        backup_filename: ""

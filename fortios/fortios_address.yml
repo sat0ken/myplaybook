@@ -1,0 +1,16 @@
+---
+- hosts: Fortios
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - fortios_address:
+        host: "{{ host }}"
+        username: "admin"
+        password: "{{ password }}"
+        state: present
+        name: "fromfrance"
+        type: geography
+        country: FR
+        comment: "French geoip address"
+
